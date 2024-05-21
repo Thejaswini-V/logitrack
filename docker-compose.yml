@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  server:
+    build: ./server        # Path to your server Dockerfile
+    ports:
+      - "3001:3001"        # Map container port 3001 to host port 3001
+    environment:
+      MYSQL_HOST: mysql    # MySQL service name defined below
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: inventory
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"        # Map container port 3306 to host port 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: inventory
